@@ -9,6 +9,7 @@ const helmet = require('helmet');
 const rateLimit = require('express-rate-limit');
 const { createUser, login } = require('./controllers/users');
 const { SigninValidationJoi, SignupValidationJoi } = require('./middlewares/auth-validation');
+const { requestLogger, errorLogger } = require('./middlewares/logger');
 const auth = require('./middlewares/auth');
 const NotFoundError = require('./utils/errors/not-found-error');
 
@@ -49,6 +50,8 @@ mongoose.connect(MONGO_URI, {
   useNewUrlParser: true,
 });
 
+app.use(requestLogger); // подключаем логгер запросов
+
 app.post('/signup', SignupValidationJoi, createUser);
 app.post('/signin', SigninValidationJoi, login);
 
@@ -57,6 +60,9 @@ app.use('/cards', auth, routerCard);
 app.all('*', (req, res, next) => {
   next(new NotFoundError('Путь не существует'));
 });
+
+app.use(errorLogger); // подключаем логгер ошибок
+
 app.use(errors());
 app.use(errorHandler);
 
