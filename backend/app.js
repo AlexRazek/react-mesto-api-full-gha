@@ -46,9 +46,14 @@ app.use(apiLimiter);
 // });
 
 // MongoDB URL в .env
-mongoose.connect(`${MONGO_URI}/mestodb`, {
-  useNewUrlParser: true,
-});
+mongoose.connect(
+  `${MONGO_URI}/mestodb`,
+  {
+    useNewUrlParser: true,
+  },
+  // eslint-disable-next-line no-console
+  console.log('connected with MongoDB'),
+);
 
 app.use(requestLogger); // подключаем логгер запросов
 
