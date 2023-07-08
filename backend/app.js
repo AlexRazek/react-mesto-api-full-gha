@@ -27,7 +27,7 @@ const apiLimiter = rateLimit({
   legacyHeaders: false, // Disable the `X-RateLimit-*` headers
 });
 
-const { PORT = 4000, MONGO_URI = 'mongodb://127.0.0.1:27017/mestodb' } = process.env;
+const { PORT = 4000, MONGO_URI = 'mongodb://localhost:27017' } = process.env;
 
 app.use(cookieParser());
 
@@ -46,7 +46,7 @@ app.use(apiLimiter);
 // });
 
 // MongoDB URL в .env
-mongoose.connect(MONGO_URI, {
+mongoose.connect(`${MONGO_URI}/mestodb`, {
   useNewUrlParser: true,
 });
 
