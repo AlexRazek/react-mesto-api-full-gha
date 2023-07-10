@@ -7,7 +7,7 @@
 
 ## Ссылки на проект
 
-IP-адрес <158.160.73.122>
+IP <158.160.73.122>
 
 Frontend <https://alexmesto.nomoredomains.work>
 

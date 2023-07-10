@@ -48,7 +48,7 @@ export default class Api {
   }
 
   deleteCard(idCard) {
-    return fetch(`${this._url}cards/${idCard}`, {
+    return fetch(`${this._url}/cards/${idCard}`, {
       method: "DELETE",
       credentials: "include",
       headers: this._headers,
