@@ -34,6 +34,7 @@ const allowedCors = [
   'http://praktikum.tk',
   'http://localhost:3000',
   'localhost:3000',
+  'http://127.0.0.1:3000',
 ];
 
 app.use((req, res, next) => {
