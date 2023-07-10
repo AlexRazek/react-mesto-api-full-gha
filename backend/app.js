@@ -16,7 +16,8 @@ const NotFoundError = require('./utils/errors/not-found-error');
 const app = express();
 
 app.use(cors({
-  origin: 'http://localhost:3000',
+  origin: true,
+  // origin: 'http://localhost:3000',
   credentials: true,
 })); const apiLimiter = rateLimit({
   windowMs: 15 * 60 * 1000, // 15 minutes
@@ -33,6 +34,7 @@ const allowedCors = [
   'https://praktikum.tk',
   'http://praktikum.tk',
   'http://localhost:3000',
+  'https://localhost:3000',
   'localhost:3000',
   'http://127.0.0.1:3000',
   'http://api.alexmesto.nomoredomains.work',
@@ -46,7 +48,7 @@ app.use((req, res, next) => {
   // проверяем, что источник запроса есть среди разрешённых
   if (allowedCors.includes(origin)) {
     res.header('Access-Control-Allow-Origin', origin);
-    res.header('Access-Control-Allow-Origin', '*');
+    // res.header('Access-Control-Allow-Origin', '*');
   }
 
   const { method } = req; // Сохраняем тип запроса (HTTP-метод) в соответствующую переменную
