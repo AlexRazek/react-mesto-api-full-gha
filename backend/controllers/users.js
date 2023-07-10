@@ -6,7 +6,7 @@ const { CREATED, SUCCESS } = require('../utils/success');
 const SALT_ROUNDS = 10;
 
 // eslint-disable-next-line max-len
-const { JWT_SECRET = 'secret-code' } = process.env;
+const { JWT_SECRET = 'secret-code', NODE_ENV } = process.env;
 
 const User = require('../models/user');
 const BadRequestError = require('../utils/errors/bad-request-error');
@@ -57,7 +57,7 @@ const login = (req, res, next) => {
   return User.findUserByCredentials(email, password)
     .then((user) => {
       // создадим токен
-      const token = jwt.sign({ _id: user._id }, JWT_SECRET, { expiresIn: '7d' });
+      const token = jwt.sign({ _id: user._id }, NODE_ENV === 'production' ? JWT_SECRET : 'develop-key', { expiresIn: '7d' });
       // отправим токен, браузер сохранит его в куках
       res
         .cookie('jwt', token, {
