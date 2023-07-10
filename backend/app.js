@@ -16,26 +16,24 @@ const NotFoundError = require('./utils/errors/not-found-error');
 const app = express();
 
 app.use(cors({
-  origin: 'http://localhost:4000',
+  origin: 'http://localhost:3000',
   credentials: true,
-}));
-
-const apiLimiter = rateLimit({
+})); const apiLimiter = rateLimit({
   windowMs: 15 * 60 * 1000, // 15 minutes
   max: 100, // Limit each IP to 100 requests per `window` (here, per 15 minutes)
   standardHeaders: true, // Return rate limit info in the `RateLimit-*` headers
   legacyHeaders: false, // Disable the `X-RateLimit-*` headers
 });
 
-const { PORT = 4000, MONGO_URI = 'mongodb://localhost:27017' } = process.env;
+const { PORT = 3000, MONGO_URI = 'mongodb://localhost:27017' } = process.env;
 
 app.use(cookieParser());
 
 const allowedCors = [
   'https://praktikum.tk',
   'http://praktikum.tk',
-  'http://localhost:4000',
-  'localhost:4000',
+  'http://localhost:3000',
+  'localhost:3000',
 ];
 
 app.use((req, res, next) => {
@@ -64,6 +62,12 @@ app.use((req, res, next) => {
     return res.end();
   }
   return next();
+});
+
+app.get('/crash-test', () => {
+  setTimeout(() => {
+    throw new Error('Сервер сейчас упадёт');
+  }, 0);
 });
 
 const routerUser = require('./routes/users');
@@ -108,5 +112,5 @@ app.use(errorHandler);
 
 app.listen(PORT, () => {
   // eslint-disable-next-line no-console
-  console.log('server is running on port 4000');
+  console.log('server is running on port 3000');
 });
