@@ -13,7 +13,7 @@ export default class Api {
   }
 
   getUserInfo() {
-    return fetch(`${this._url}users/me`, {
+    return fetch(`${this._url}/users/me`, {
       method: "GET",
       credentials: "include",
       headers: this._headers,
@@ -21,7 +21,7 @@ export default class Api {
   }
 
   editUserInfo(data) {
-    return fetch(`${this._url}users/me`, {
+    return fetch(`${this._url}/users/me`, {
       method: "PATCH",
       credentials: "include",
       headers: this._headers,
@@ -31,7 +31,7 @@ export default class Api {
   }
 
   getAllCards() {
-    return fetch(`${this._url}cards`, {
+    return fetch(`${this._url}/cards`, {
       method: "GET",
       credentials: "include",
       headers: this._headers,
@@ -39,7 +39,7 @@ export default class Api {
   }
 
   addNewCard({ name, link }) {
-    return fetch(`${this._url}cards`, {
+    return fetch(`${this._url}/cards`, {
       method: "POST",
       credentials: "include",
       headers: this._headers,
@@ -56,7 +56,7 @@ export default class Api {
   }
 
   editAvatarInfo(data) {
-    return fetch(`${this._url}users/me/avatar`, {
+    return fetch(`${this._url}/users/me/avatar`, {
       method: "PATCH",
       credentials: "include",
       headers: this._headers,
@@ -66,13 +66,13 @@ export default class Api {
 
   changeLikeCardStatus(idCard, isLiked) {
     if (isLiked) {
-      return fetch(`${this._url}cards/${idCard}/likes`, {
+      return fetch(`${this._url}/cards/${idCard}/likes`, {
         method: "PUT",
         credentials: "include",
         headers: this._headers,
       }).then((res) => this._resResponse(res));
     } else {
-      return fetch(`${this._url}cards/${idCard}/likes`, {
+      return fetch(`${this._url}/cards/${idCard}/likes`, {
         method: "DELETE",
         credentials: "include",
         headers: this._headers,
