@@ -9,7 +9,7 @@ function AddPlacePopup(props) {
   function handleSubmit(e) {
     // Запрещаем браузеру переходить по адресу формы
     // отключил чтобы обновить форму
-    // e.preventDefault();
+    e.preventDefault();
     // Передаём значения управляемых компонентов во внешний обработчик
     props.onAddPlace({
       name: cardNameRef.current.value,

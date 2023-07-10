@@ -85,7 +85,6 @@ app.use(express.json());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(helmet());
-app.use(apiLimiter);
 
 // mongoose.connect('mongodb://localhost:27017/mestodb', {
 //   useNewUrlParser: true,
@@ -102,6 +101,8 @@ mongoose.connect(
 );
 
 app.use(requestLogger); // подключаем логгер запросов
+// apiLimiter подключаем после логера запросов,иначе заблокированные запросы небудут записаны в логи
+app.use(apiLimiter);
 
 app.post('/signup', SignupValidationJoi, createUser);
 app.post('/signin', SigninValidationJoi, login);

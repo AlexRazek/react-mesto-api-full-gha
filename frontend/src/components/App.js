@@ -106,7 +106,7 @@ function App() {
       isOpenImage: true,
     });
   }
-
+  // ставим лайк
   function handleCardLike(card) {
     // Снова проверяем, есть ли уже лайк на этой карточке
     const isLiked = card.likes.some((i) => i === currentUser._id);
@@ -123,7 +123,7 @@ function App() {
         console.log(`Ошибка при установке лайка: ${err}`); // выведем ошибку в консоль
       });
   }
-
+  // удаление карточки
   function handleCardDelete(card) {
     api
       .deleteCard(card._id)
@@ -146,7 +146,7 @@ function App() {
         console.log(`Ошибка при добавлении карточки: ${err}`); // выведем ошибку в консоль
       });
   }
-
+  //  обновление данных аватара
   function handleUpdateAvatar(dataAvatar) {
     api
       .editAvatarInfo(dataAvatar)
@@ -158,7 +158,7 @@ function App() {
         console.log(`Ошибка при обновлении данных аватара: ${err}`); // выведем ошибку в консоль
       });
   }
-
+  // обновление данных пользователя
   function handleUpdateUser(users) {
     api
       .editUserInfo(users)
@@ -171,6 +171,7 @@ function App() {
       });
   }
 
+  //функция зактрытия разных popup
   function closeAllPopups() {
     setisAddPlacePopupOpen(false);
     setisEditAvatarPopupOpen(false);
@@ -179,6 +180,7 @@ function App() {
     setisInfoTooltipOpen(false);
   }
 
+  // вход в аккаунт
   function handleLogin(email, password) {
     if (!email || !password) {
       return;
@@ -187,6 +189,7 @@ function App() {
       .authorize(email, password)
       .then((data) => {
         if (data.token) {
+          setuserEmail(email); 
           // localStorage.setItem("jwt", data.token);
           handleLoginSet();
           navigate("/");
@@ -199,6 +202,7 @@ function App() {
       });
   };
 
+  // регистрация
   function handleRegister (email, password) {
     if (password){
       auth.register
@@ -218,6 +222,7 @@ function App() {
     }
   }
 
+  // выход из аккаунта
   function outLogged () {
     // localStorage.removeItem("jwt");
     setLoggedIn(false);
