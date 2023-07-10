@@ -35,6 +35,10 @@ const allowedCors = [
   'http://localhost:3000',
   'localhost:3000',
   'http://127.0.0.1:3000',
+  'http://api.alexmesto.nomoredomains.work',
+  'https://api.alexmesto.nomoredomains.work',
+  'http://alexmesto.nomoredomains.work',
+  'https://alexmesto.nomoredomains.work',
 ];
 
 app.use((req, res, next) => {
