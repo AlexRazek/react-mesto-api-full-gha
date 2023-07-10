@@ -226,6 +226,7 @@ function App() {
   function outLogged () {
     // localStorage.removeItem("jwt");
     setLoggedIn(false);
+    navigate('/signin');
   }
 
   return (
