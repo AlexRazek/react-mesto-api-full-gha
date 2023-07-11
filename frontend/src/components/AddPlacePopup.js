@@ -2,13 +2,13 @@ import "../index.css";
 import React, { useEffect, useRef } from "react";
 import PopupWithForm from "./PopupWithForm.js";
 
+//делаем через useRef
 function AddPlacePopup(props) {
   const cardNameRef = useRef();
   const cardLinkRef = useRef();
 
   function handleSubmit(e) {
     // Запрещаем браузеру переходить по адресу формы
-    // отключил чтобы обновить форму
     e.preventDefault();
     // Передаём значения управляемых компонентов во внешний обработчик
     props.onAddPlace({

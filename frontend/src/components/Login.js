@@ -17,6 +17,7 @@ const Login = ({ onLogin }) => {
   }
 
     const handleSubmit = (e) => {
+      // Запрещаем браузеру переходить по адресу формы
       e.preventDefault();
       onLogin(formValue.email, formValue.password);
       setFormValue({ email: "", password: "" });

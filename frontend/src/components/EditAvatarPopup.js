@@ -7,6 +7,7 @@ function EditAvatarPopup(props) {
   const avatarRef = useRef();
 
   function handleSubmit(e) {
+  // Запрещаем браузеру переходить по адресу формы
     e.preventDefault();
     props.onUpdateAvatar({
       avatar: avatarRef.current.value,

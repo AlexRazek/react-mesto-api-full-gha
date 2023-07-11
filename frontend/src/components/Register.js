@@ -18,7 +18,6 @@ const Register = (props) => {
   }
 
   const handleSubmit = (e) => {
-    // отключил чтобы обновить страницу
     e.preventDefault();
     props.onRegister(formValue.email, formValue.password);
     setFormValue({ email: "", password: "" });

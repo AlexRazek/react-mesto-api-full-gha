@@ -39,6 +39,7 @@ function Main(props) {
         {props.cards.map((card) => (
           <Card
             key={card._id}
+            card={card}
             onCardClick={props.onCardClick}
             onCardDelete={props.onCardDelete}
             onCardLike={props.onCardLike}
@@ -46,7 +47,6 @@ function Main(props) {
             link={card.link}
             likes={(card.likes || [] ).length} 
             // likes={card.likes.length}
-            card={card}
           />
         ))}
       </section>

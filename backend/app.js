@@ -27,6 +27,7 @@ app.use(cors({
 });
 
 const { PORT = 3000, MONGO_URI = 'mongodb://localhost:27017' } = process.env;
+// const { PORT = 3000, MONGO_URI = 'mongodb://localhost:27017' } = process.env;
 
 app.use(cookieParser());
 
@@ -36,6 +37,7 @@ const allowedCors = [
   'http://localhost:3000',
   'https://localhost:3000',
   'localhost:3000',
+  'localhost:3001',
   'http://127.0.0.1:3000',
   'http://api.alexmesto.nomoredomains.work',
   'https://api.alexmesto.nomoredomains.work',

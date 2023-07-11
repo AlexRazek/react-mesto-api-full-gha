@@ -223,10 +223,12 @@ function App() {
   }
 
   // выход из аккаунта
-  function outLogged () {
+  function outLogged (e) {
+    e.preventDefault();
+    // window.cookieStore.delete('jwt');
     // localStorage.removeItem("jwt");
     setLoggedIn(false);
-    navigate('/signin');
+    // navigate('/signin');
   }
 
   return (

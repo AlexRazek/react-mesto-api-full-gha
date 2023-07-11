@@ -62,7 +62,8 @@ const login = (req, res, next) => {
       res
         .cookie('jwt', token, {
           // token - наш JWT токен, который мы отправляем
-          maxAge: 3600000,
+          // maxAge: 3600000,
+          maxAge: 120000,
           httpOnly: true,
           sameSite: true,
         });
@@ -107,7 +108,7 @@ const updateUserProfile = (req, res, next) => {
     { name, about },
     { new: true, runValidators: true },
   )
-    .then((userProfile) => res.send({ userProfile }))
+    .then((userProfile) => res.send(userProfile))
     .catch((err) => {
       if (err.name === 'ValidationError') {
         next(new BadRequestError('Переданы некорректные данные для обновления профиля'));

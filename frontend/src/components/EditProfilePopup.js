@@ -3,8 +3,9 @@ import React, { useContext, useState, useEffect } from "react";
 import PopupWithForm from "./PopupWithForm.js";
 import { CurrentUserContext } from "../contexts/CurrentUserContext";
 
+//делаем через useState
 function EditProfilePopup(props) {
-  // Подписка на контекст
+  // Подписка на контекст, а именно на юзера
   const currentUser = useContext(CurrentUserContext);
 
   const [name, setName] = useState("");
@@ -27,8 +28,7 @@ function EditProfilePopup(props) {
 
   function handleSubmit(e) {
     // Запрещаем браузеру переходить по адресу формы
-    // отключил e.preventDefault(), чтобы форма перезагружалась
-    // e.preventDefault();
+    e.preventDefault();
     // Передаём значения управляемых компонентов во внешний обработчик
     props.onUpdateUser({
       name,
