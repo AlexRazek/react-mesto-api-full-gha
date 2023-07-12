@@ -222,13 +222,15 @@ function App() {
     }
   }
 
-  // выход из аккаунта
-  function outLogged (e) {
-    e.preventDefault();
-    // window.cookieStore.delete('jwt');
-    // localStorage.removeItem("jwt");
-    setLoggedIn(false);
-    // navigate('/signin');
+  // выход из аккаунта, с функцией очистки Cookie
+  function outLogged () {
+    auth.registerOut()
+      .then(() => {
+        setLoggedIn(false);
+      })
+      .catch((err) => {
+        console.log(`Ошибка при выходе из аккаунта: ${err}`); // выведем ошибку в консоль
+    })
   }
 
   return (

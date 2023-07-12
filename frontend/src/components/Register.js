@@ -46,7 +46,7 @@ const Register = (props) => {
             className="auth__input"
             placeholder="Пароль"
             name="password" 
-            type="password" 
+            type="password"
             value={formValue.password} 
             onChange={handleChange}
             minLength="6"

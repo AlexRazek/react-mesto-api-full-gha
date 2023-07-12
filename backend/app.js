@@ -7,7 +7,7 @@ const mongoose = require('mongoose');
 const { errors } = require('celebrate');
 const helmet = require('helmet');
 const rateLimit = require('express-rate-limit');
-const { createUser, login } = require('./controllers/users');
+const { createUser, login, loginOut } = require('./controllers/users');
 const { SigninValidationJoi, SignupValidationJoi } = require('./middlewares/auth-validation');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 const auth = require('./middlewares/auth');
@@ -37,7 +37,7 @@ const allowedCors = [
   'http://localhost:3000',
   'https://localhost:3000',
   'localhost:3000',
-  // 'localhost:3001',
+  'localhost:3001',
   'http://127.0.0.1:3000',
   'http://api.alexmesto.nomoredomains.work',
   'https://api.alexmesto.nomoredomains.work',
@@ -108,6 +108,7 @@ app.use(apiLimiter);
 
 app.post('/signup', SignupValidationJoi, createUser);
 app.post('/signin', SigninValidationJoi, login);
+app.post('/signout', loginOut);
 
 app.use('/users', auth, routerUser);
 app.use('/cards', auth, routerCard);

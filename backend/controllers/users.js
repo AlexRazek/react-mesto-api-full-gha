@@ -62,8 +62,7 @@ const login = (req, res, next) => {
       res
         .cookie('jwt', token, {
           // token - наш JWT токен, который мы отправляем
-          // maxAge: 3600000,
-          maxAge: 120000,
+          maxAge: 3600000,
           httpOnly: true,
           sameSite: true,
         });
@@ -72,6 +71,11 @@ const login = (req, res, next) => {
       res.send({ token });
     })
     .catch(next);
+};
+
+// удаление Куки/cookie, при выходе из аккаунта
+const loginOut = (req, res) => {
+  res.clearCookie('jwt').send({ massage: 'Выход успешно' });
 };
 
 // регистрация пользователя
@@ -149,4 +153,5 @@ module.exports = {
   updateUserProfile,
   updateUserAvatar,
   login,
+  loginOut,
 };

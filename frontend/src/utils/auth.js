@@ -33,6 +33,18 @@ export const authorize = (email, password) => {
   }).then(resResponse);
 };
 
+export const registerOut = (email, password) => {
+  return fetch(`${BASE_URL}/signout`, {
+    method: "POST",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+    credentials: "include",
+    body: JSON.stringify({ email, password }),
+  }).then(resResponse);
+};
+
 // export const checkToken = (token) => {
 export const checkToken = () => {
   return fetch(`${BASE_URL}/users/me`, {
